@@ -1,0 +1,124 @@
+{
+  "manifest_version": "0.4",
+  "name": "japan-hobby-price-mcp",
+  "display_name": "Japan Hobby Price MCP — TCG + Figures + Dlsite + Mandarake",
+  "version": "1.0.0",
+  "description": "Read-only MCP server combining Japanese hobby price data: TCG/used-price trends from suruga-ya.jp, anime figure prices from MyFigureList, plus live Apify actor links for dlsite and mandarake data. Four tools total: tcg_current_price, tcg_price_history, figure_current_price, figure_price_history.",
+  "long_description": "Consolidates four existing kensho hobby-data MCPs into one bundle. Exposes read-only tools for AI agents researching Japanese second-hand market prices: TCG cards (Pokemon etc.) from suruga-ya.jp, and anime figures from MyFigureList multi-shop aggregation. Each tool runs on local JSONL data — no network, no API key. For live dlsite/mandarake data, the server returns Apify actor links (surugaya-japan-hobby-prices, mandarake-surugaya-mcp) as documented in tool results.\n\nData sources: suruga-ya.jp TCG (960 observations, 2026-09-21), MyFigureList anime figures (654 observations). Both are bundled locally in the MCPB release.",
+  "author": {
+    "name": "Kensho Project",
+    "email": "atushi1841@gmail.com",
+    "url": "https://github.com/atushi1841"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atushi1841/japan-hobby-price-mcp"
+  },
+  "homepage": "https://github.com/atushi1841/japan-hobby-price-mcp",
+  "documentation": "https://github.com/atushi1841/japan-hobby-price-mcp",
+  "support": "https://github.com/atushi1841/japan-hobby-price-mcp/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "python",
+    "entry_point": "src/stdio_main.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "src/stdio_main.py"
+      ]
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  },
+  "keywords": [
+    "japan",
+    "hobby",
+    "price",
+    "tcg",
+    "pokemon",
+    "anime",
+    "figure",
+    "surugaya",
+    "mandarake",
+    "dlsite",
+    "collectibles",
+    "second-hand",
+    "market-data",
+    "mcp"
+  ],
+  "license": "MIT",
+  "privacy_policies": [],
+  "tools": [
+    {
+      "name": "tcg_current_price",
+      "description": "Current used/new/list price for a Pokemon/TCG item from the Japan (Suruga-ya) dataset.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string",
+            "description": "item name or URL substring (e.g. リザードン, pokemon card)."
+          }
+        },
+        "required": ["item"]
+      }
+    },
+    {
+      "name": "tcg_price_history",
+      "description": "Price time series for a TCG item in the Japan (Suruga-ya) dataset.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string",
+            "description": "item name or URL substring."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "max rows (default 50)."
+          }
+        },
+        "required": ["item"]
+      }
+    },
+    {
+      "name": "figure_current_price",
+      "description": "Current price snapshot for an anime figure from the Japan (MyFigureList) dataset.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "figure name, series, character, or URL substring."
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "name": "figure_price_history",
+      "description": "Price time series for an anime figure in the Japan (MyFigureList) dataset.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "figure name or URL substring."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "max rows (default 50)."
+          }
+        },
+        "required": ["name"]
+      }
+    }
+  ]
+}
