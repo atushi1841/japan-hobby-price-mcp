@@ -22,9 +22,9 @@ Both datasets are bundled locally in the MCPB release. No network calls, no API 
 
 For real-time scraping of dlsite, mandarake, mercari, yahoo auctions etc.:
 
-- [surugaya-japan-hobby-prices](https://apify.com/atushi1841/acts/surugaya-japan-hobby-prices) — TCG + more
-- [mandarake-surugaya-mcp](https://apify.com/atushi1841/acts/mandarake-surugaya-mcp) — mandarake auctions
-- [dlsite-scraper](https://apify.com/atushi1841/acts/dlsite-scraper) — dlsite commodity data
+- [surugaya-japan-hobby-prices](https://apify.com/fruitful_quintessence/acts/surugaya-japan-hobby-prices) — TCG + more
+- [mandarake-surugaya-mcp](https://apify.com/fruitful_quintessence/acts/mandarake-surugaya-mcp) — mandarake auctions
+- [dlsite-scraper](https://apify.com/fruitful_quintessence/acts/dlsite-scraper) — dlsite commodity data
 
 Use the [kensho-apify MCP server](https://github.com/atushi1841/kensho-apify) to run these actors programmatically.
 
